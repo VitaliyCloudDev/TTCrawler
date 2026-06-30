@@ -11,11 +11,15 @@ from entities import Entity
 
 class game:
     def __init__(self):
+        # Map init
         self.map_size = 16
         self.map = self.initMap(self.map_size)
+        # Player spawn
         self.player = Entity('You', '@', 1, 1)
-        self.map[self.player.y][self.player.x] = '@'
         self.entites = [self.player]
+        self.map[self.player.y][self.player.x] = '@'
+        # Final
+        self.drawMap()
 
     def moveEntites(self):
         for i in self.entites:
