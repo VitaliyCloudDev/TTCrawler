@@ -14,10 +14,6 @@ class game:
         # Map init
         self.map_size = 16
         self.map = self.initMap(self.map_size)
-        # Player spawn
-        self.player = Entity('You', '@', 1, 1)
-        self.entites = [self.player]
-        self.map[self.player.y][self.player.x] = '@'
         # Final
         self.drawMap()
 
@@ -54,6 +50,10 @@ class game:
         # Добавляем двери
         map[-1][1] = 2
         map[0][-2] = 2
+        # Добавляем персонажа
+        self.player = Entity('You', '@', 1, 1)
+        self.entites = [self.player]
+        map[self.player.y][self.player.x] = '@'
         return map
                     
     def drawMap(self):
