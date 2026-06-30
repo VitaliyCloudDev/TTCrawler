@@ -10,17 +10,6 @@
 
 from entities import Entity
 
-# gopnik = Entity('Gopnik')
-# ment = Entity('Ment')
-# print(gopnik.name, gopnik.hp)
-# print(ment.name, ment.hp)
-# print()
-# print('ГОПНИК БЬЕТ МЕНТА')
-# gopnik.attack(ment)
-# print()
-# print(gopnik.name, gopnik.hp)
-# print(ment.name, ment.hp)
-
 activeEntites = []
 
 hero = Entity('You', '@', 1, 1)
