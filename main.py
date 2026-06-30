@@ -52,6 +52,7 @@ class game:
         map[0][-2] = 2
         # Добавляем персонажа
         self.player = Entity('You', '@', 1, 1)
+        self.player.hostile = False
         self.entites = [self.player]
         map[self.player.y][self.player.x] = '@'
         return map
