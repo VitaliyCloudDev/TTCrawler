@@ -1,3 +1,5 @@
+from random import choice
+
 class Entity:
     def __init__(self, name, symbol, x, y):
         self.name = name
@@ -13,6 +15,7 @@ class Entity:
         self.speed = 10
         self.gold = 0
         self.alive = True
+        self.holding = None
         self.inventory = []
     def get_hp(self):
         return f'{self.name} {self.hp}/{self.maxhp}'
