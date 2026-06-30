@@ -71,22 +71,7 @@ class game:
         g.moveEntites()
         g.drawMap()
 
-# hero = Entity('You', '@')
-# zombie = Entity('Зомби', 'z')
-# print(type(zombie) == Entity)
-
-
-# def moveEntites():
-#    for i in map
-
-# def drawMap():
-#   for i in map:
-#     print(*i)
-
-
-
-# map = initMap(12)
-# drawMap()
+# MAIN
 g = game()
 while True:
     g.updateWorld()
