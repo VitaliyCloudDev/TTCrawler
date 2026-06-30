@@ -10,6 +10,7 @@ class Entity:
         self.alive = True
 
         self.move = None
+        self.wander = True
         self.hp = 100
         self.maxhp = 100
         self.armor = 0
@@ -32,3 +33,11 @@ class Entity:
         print(f'Нанесено {d} урона! {target.get_hp()}')
     def __repr__(self):
         return self.symbol
+
+    def rMove(self):
+        if not self.wander:
+            return
+        if randint(0,10) > self.speed:
+            return
+        dir = ['n','s','w','e']
+        self.move = choice(dir)

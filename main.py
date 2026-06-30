@@ -12,8 +12,12 @@ from entities import Entity
 class game:
     def __init__(self):
         # Map init
+        self.entites = []
         self.map_size = 16
         self.map = self.initMap(self.map_size)
+        # Debug
+        self.entites.append(Entity('Zombie', 'z', 4, 4))
+        self.entites.append(Entity('Zombie', 'z', 3, 5))
         # Final
         self.drawMap()
 
@@ -38,7 +42,16 @@ class game:
             self.map[t[1]][t[0]] = i.symbol
             self.map[i.y][i.x] = 0
             i.x,i.y = t[0],t[1]
-
+            i.move = None
+    
+    def logicEntites(self):
+        for i in self.entites:
+            if i.alive == False:
+                print(f'{i.name} Погибает!')
+                self.entites.remove(i)
+            if i.wander:
+                i.rMove()
+    
     def initMap(self, map_size):
         map = [[0 for i in range(map_size)] for i in range(map_size)]
         # Рисуем края стены карты
@@ -50,11 +63,14 @@ class game:
         # Добавляем двери
         map[-1][1] = 2
         map[0][-2] = 2
-        # Добавляем персонажа
+
+        # Добавляем игрока
         self.player = Entity('You', '@', 1, 1)
+        self.player.wander = False
         self.player.hostile = False
-        self.entites = [self.player]
-        map[self.player.y][self.player.x] = '@'
+        self.entites.append(self.player)
+        map[self.player.y][self.player.x] = self.player.symbol
+
         return map
                     
     def drawMap(self):
@@ -81,6 +97,7 @@ class game:
         self.player.move = dir
 
     def updateWorld(self):
+        g.logicEntites()
         g.movePlayer()
         g.moveEntites()
         g.drawMap()
