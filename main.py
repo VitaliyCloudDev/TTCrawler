@@ -27,13 +27,13 @@ class game:
                 continue
             t = [i.x, i.y]
             match i.move:
-                case 'w':
+                case 'n':
                     t[1]-=1
                 case 's':
                     t[1]+=1
-                case 'a':
+                case 'w':
                     t[0]-=1
-                case 'd':
+                case 'e':
                     t[0]+=1
                 case _:
                     raise Exception("NAVERROR")
@@ -61,13 +61,26 @@ class game:
         for i in self.map:
             print(*i)
 
-    def moveHero(self):
-        self.player.move = input('' \
-                                'Куда идти? : W/A/S/D : '
-                                ).lower()[0]
+    def movePlayer(self):
+        i = input('' \
+                'Куда идти? : W/A/S/D : '
+                ).lower()[0]
+        match i:
+            case 'w':
+                dir = 'n'
+            case 's':
+                dir = 's'
+            case 'a':
+                dir = 'w'
+            case 'd':
+                dir = 'e'
+            case _:
+                dir = None
+
+        self.player.move = dir
 
     def updateWorld(self):
-        g.moveHero()
+        g.movePlayer()
         g.moveEntites()
         g.drawMap()
 
