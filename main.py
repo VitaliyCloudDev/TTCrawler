@@ -12,8 +12,8 @@ from entities import Entity
 
 activeEntites = []
 
-hero = Entity('You', '@', 1, 1)
-zombie = Entity('Зомби', 'z', -1, -2)
+hero = Entity('You', '@')
+zombie = Entity('Зомби', 'z')
 activeEntites.append(hero, zombie)
 
 def initMap(map_size):

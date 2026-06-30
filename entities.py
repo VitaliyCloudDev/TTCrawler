@@ -1,10 +1,8 @@
 class Entity:
-    def __init__(self, name, symbol, x, y):
+    def __init__(self, name, symbol):
         self.name = name
         self.symbol = symbol
         self.move = None
-        self.x = x
-        self.y = y
         self.damage = 10
         self.hp = 100
         self.maxhp = 100
