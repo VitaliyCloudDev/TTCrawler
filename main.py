@@ -16,7 +16,7 @@ hero = Entity('You', '@', 1, 1)
 zombie = Entity('Зомби', 'z', -1, -2)
 activeEntites.append(hero, zombie)
 
-def initMap(map, map_size):
+def initMap(map_size):
     map = [[0 for i in range(map_size)] for i in range(map_size)]
     # Рисуем края стены карты
     for i in map:
@@ -36,5 +36,5 @@ def drawMap():
 def moveHero():
     hero.move = input('Куда идти? : Left/Up/Right/Down : ').lower()[0]
 
-map = initMap(map,12)
+map = initMap(12)
 drawMap()
