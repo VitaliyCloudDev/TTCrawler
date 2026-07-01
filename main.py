@@ -8,6 +8,8 @@
 #    '.          .'
 #      '-......-'
 from entities import Entity
+class NavigationError(ValueError):
+    pass
 
 class game:
     def __init__(self):
@@ -37,7 +39,7 @@ class game:
                 case 'e':
                     t[0]+=1
                 case _:
-                    raise Exception("NAVERROR")
+                    raise NavigationError(i.move)
             if self.map[t[1]][t[0]] != ' ':
                 continue
             self.map[t[1]][t[0]] = i.symbol
