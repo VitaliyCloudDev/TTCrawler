@@ -46,13 +46,17 @@ class game:
     
     def logicEntites(self):
         for i in self.entites:
-            if i.alive == False:
+            if i.hp <= 0:
+                i.alive = False
                 print(f'{i.name} Погибает!')
+                self.map[i.y][i.x] = 0
                 self.entites.remove(i)
+                continue
             if i.hostile:
                 attackPos = [[-1,0],[0,1],[1,0],[0,-1]]
                 coords = [self.player.y - i.y, self.player.x - i.x]
                 if coords in attackPos:
+                    self.player.attack(i)
                     i.attack(self.player)
             if i.wander:
                 i.rMove()

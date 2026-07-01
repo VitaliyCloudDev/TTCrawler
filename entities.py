@@ -34,6 +34,7 @@ class Entity:
         return f'{self.name} {self.hp}/{self.maxhp}'
     
     def attack(self, target):
+        print()
         attack = choices(self.attacks,[i[2] for i in self.attacks])[0]
         print(f'{self.name} {attack[0]} {target.name}')
         self.stay = 3
@@ -41,10 +42,9 @@ class Entity:
         if d < 0 :
             d = 0
         target.hp -= d
-        if target.hp <= 0:
-            target.alive = False
         if d != 0:
             print(f'Нанесено {d} урона! {target.get_hp()}')
+        print()
 
     def __repr__(self):
         return self.symbol
