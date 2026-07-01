@@ -17,6 +17,7 @@ class game:
         self.map = self.initMap(self.map_size)
         # Debug
         self.entites.append(Entity('Zombie', 'z', 4, 4))
+        self.player.attacks = [['Удар по жопе!',400,100]]
         # Final
         self.frame = None
         self.drawMap()
@@ -37,10 +38,10 @@ class game:
                     t[0]+=1
                 case _:
                     raise Exception("NAVERROR")
-            if self.map[t[1]][t[0]] != 0:
+            if self.map[t[1]][t[0]] != ' ':
                 continue
             self.map[t[1]][t[0]] = i.symbol
-            self.map[i.y][i.x] = 0
+            self.map[i.y][i.x] = ' '
             i.x,i.y = t[0],t[1]
             i.move = None
     
@@ -62,7 +63,7 @@ class game:
                 i.rMove()
     
     def initMap(self, map_size):
-        map = [[0 for i in range(map_size)] for i in range(map_size)]
+        map = [[' ' for i in range(map_size)] for i in range(map_size)]
         # Рисуем края стены карты
         for i in map:
             i[0] = 1
