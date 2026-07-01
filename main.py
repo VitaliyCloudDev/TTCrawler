@@ -18,6 +18,7 @@ class game:
         # Debug
         self.entites.append(Entity('Zombie', 'z', 4, 4))
         # Final
+        self.frame = None
         self.drawMap()
 
     def moveEntites(self):
@@ -79,8 +80,22 @@ class game:
                     
     def drawMap(self):
         print()
-        for i in self.map:
-            print(*i)
+        for i,v in enumerate(self.map):
+            print(*v, self.renderHud(i))
+    
+    def renderHud(self, i):
+        hud = [
+            '-- TunTunCrawler --',
+            f'HP:{self.player.hp}/'
+                +f'{self.player.maxhp} '
+                +f'Броня:{self.player.armor}',
+            f'В руке: {self.player.holding}',
+            f'Инвентарь: {self.player.inventory}',
+            f'Монеты: {self.player.gold}',
+        ]
+        if i >= len(hud):
+            return ''
+        return hud[i]
 
     def movePlayer(self):
         i = input('' \
@@ -103,10 +118,10 @@ class game:
         self.player.move = dir
 
     def updateWorld(self):
-        g.logicEntites()
-        g.movePlayer()
-        g.moveEntites()
-        g.drawMap()
+        self.logicEntites()
+        self.movePlayer()
+        self.moveEntites()
+        self.drawMap()
 
 # MAIN
 g = game()
