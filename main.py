@@ -74,10 +74,11 @@ class game:
         map[0][-2] = 2
 
         # Добавляем игрока
-        self.player = Entity('You', '@', 1, 1)
-        self.player.wander = False
-        self.player.hostile = False
-        self.entites.append(self.player)
+        if not len(self.entites):
+            self.player = Entity('You', '@', 1, 1)
+            self.player.wander = False
+            self.player.hostile = False
+            self.entites.append(self.player)
         map[self.player.y][self.player.x] = self.player.symbol
 
         return map
