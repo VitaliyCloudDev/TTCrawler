@@ -22,14 +22,9 @@ class Entity:
         self.damage = 5
         self.speed = 5
         self.gold = 0
-        self.attacks = [['Удар',self.damage],
-                        ['Критический удар!',self.damage*2],
-                        ['Промах!',0]]
-        self.attacks_weight = [
-            60,
-            10,
-            30,
-        ]
+        self.attacks = [['Удар',self.damage,60],
+                        ['Критический удар!',self.damage*2,10],
+                        ['Промах!',0,30]]
 
         self.holding = None
         self.inventory = []
@@ -39,7 +34,7 @@ class Entity:
     
     def attack(self, target):
         print(f'{self.name} Атакует {target.get_hp()}!')
-        attack = choices(self.attacks,self.attacks_weight)[0]
+        attack = choices(self.attacks,[i[2] for i in self.attacks])[0]
         d = attack[1] - target.armor
         if d < 0 :
             d = 0
