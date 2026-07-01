@@ -17,7 +17,6 @@ class game:
         self.map = self.initMap(self.map_size)
         # Debug
         self.entites.append(Entity('Zombie', 'z', 4, 4))
-        self.entites.append(Entity('Zombie', 'z', 3, 5))
         # Final
         self.drawMap()
 
@@ -49,6 +48,11 @@ class game:
             if i.alive == False:
                 print(f'{i.name} Погибает!')
                 self.entites.remove(i)
+            if i.hostile:
+                attackPos = [[-1,0],[0,1],[1,0],[0,-1]]
+                coords = [self.player.y - i.y, self.player.x - i.x]
+                if coords in attackPos:
+                    i.attack(self.player)
             if i.wander:
                 i.rMove()
     
@@ -81,7 +85,7 @@ class game:
     def movePlayer(self):
         i = input('' \
                 'Куда идти? : W/A/S/D : '
-                ).lower()[0]
+                )
         match i:
             case 'w':
                 dir = 'n'
@@ -91,6 +95,8 @@ class game:
                 dir = 'w'
             case 'd':
                 dir = 'e'
+            case '':
+                dir = None
             case _:
                 dir = None
 

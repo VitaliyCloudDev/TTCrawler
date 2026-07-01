@@ -15,6 +15,7 @@ class Entity:
 
         self.move = None
         self.wander = True
+        self.stay = 0
         self.hp = 100
         self.maxhp = 100
         self.armor = 0
@@ -34,6 +35,7 @@ class Entity:
     
     def attack(self, target):
         print(f'{self.name} Атакует {target.get_hp()}!')
+        self.stay = 3
         attack = choices(self.attacks,[i[2] for i in self.attacks])[0]
         d = attack[1] - target.armor
         if d < 0 :
@@ -49,7 +51,12 @@ class Entity:
         return self.symbol
 
     def rMove(self):
+        self.stay -= 1
         if not self.wander:
+            return
+        if self.stay <= 0:
+            self.stay = 0
+        else:
             return
         if randint(0,10) > self.speed:
             return
