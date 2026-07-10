@@ -63,7 +63,7 @@ class game:
             if i.hp <= 0:
                 i.alive = False
                 print(f'{i.name} Погибает!')
-                self.map[i.y][i.x] = 0
+                self.map[i.y][i.x] = ' '
                 self.entites.remove(i)
                 continue
             if i.hostile:
