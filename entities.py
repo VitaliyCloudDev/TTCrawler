@@ -12,7 +12,6 @@ class Entity:
         self.y = y
         self.hostile = True
         self.alive = True
-
         self.move = None
         self.wander = True
         self.stay = 0
@@ -61,3 +60,11 @@ class Entity:
             return
         dir = ['n','s','w','e']
         self.move = choice(dir)
+
+class Zombie(Entity):
+    def __init__(self, x,y):
+        super().__init__('Zombie', 'z', x,y)
+        self.attacks = [['Кусает!',30,30],
+                        ['Спотыкается!',0,30],
+                        ['Глубокий укус!',60,10],
+                        ['Царапает!',5,20],]

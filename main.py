@@ -7,7 +7,10 @@
 #   \  '-......-'  /
 #    '.          .'
 #      '-......-'
-from entities import Entity
+from entities import (
+        Entity,
+        Zombie,
+        )
 class NavigationError(ValueError):
     pass
 
@@ -18,7 +21,7 @@ class game:
         self.map_size = 16
         self.map = self.initMap(self.map_size)
         # Debug
-        self.entites.append(Entity('Zombie', 'z', 4, 4))
+        self.entites.append(Zombie(4, 4))
         self.player.attacks = [['Удар по жопе!',400,100]]
         # Final
         self.frame = None
