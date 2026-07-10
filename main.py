@@ -11,6 +11,7 @@ from entities import (
         Entity,
         Zombie,
         )
+from random import randint
 class NavigationError(ValueError):
     pass
 
@@ -21,7 +22,6 @@ class game:
         self.map_size = 16
         self.map = self.initMap(self.map_size)
         # Debug
-        self.entites.append(Zombie(4, 4))
         self.player.attacks = [['Удар по жопе!',400,100]]
         # Final
         self.frame = None
@@ -49,8 +49,16 @@ class game:
             self.map[i.y][i.x] = ' '
             i.x,i.y = t[0],t[1]
             i.move = None
+
+    def spawnEnemy(self):
+        if len(self.entites) > 2:
+            return
+        x = randint(3,4)
+        y = randint(2,5)
+        self.entites.append(Zombie(x,y))
     
     def logicEntites(self):
+        self.spawnEnemy()
         for i in self.entites:
             if i.hp <= 0:
                 i.alive = False
