@@ -17,6 +17,7 @@ class NavigationError(ValueError):
 
 class game:
     def __init__(self):
+        self.active = True
         # Map init
         self.entites = []
         self.map_size = 16
@@ -56,8 +57,15 @@ class game:
         x = randint(3,4)
         y = randint(2,5)
         self.entites.append(Zombie(x,y))
-    
+   
+    def gameOver(self):
+        print('Game Over')
+        self.active = False
+        return
+
     def logicEntites(self):
+        if not self.player.alive:
+            self.gameOver()
         self.spawnEnemy()
         for i in self.entites:
             if i.hp <= 0:
@@ -76,7 +84,7 @@ class game:
                 i.rMove()
     
     def initMap(self, map_size):
-        map = [[' ' for i in range(map_size)] for i in range(map_size)]
+        map = [[' ' for _ in range(map_size)] for _ in range(map_size)]
         # Рисуем края стены карты
         for i in map:
             i[0] = 1
@@ -109,7 +117,7 @@ class game:
                 +f'{self.player.maxhp} '
                 +f'Броня:{self.player.armor}',
             f'В руке: {self.player.holding}',
-            f'Инвентарь: {self.player.inventory}',
+            f'Инвентарь: {len(self.player.inventory)}',
             f'Монеты: {self.player.gold}',
         ]
         if i >= len(hud):
@@ -144,5 +152,5 @@ class game:
 
 # MAIN
 g = game()
-while True:
+while g.active:
     g.updateWorld()
