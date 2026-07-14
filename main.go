@@ -13,7 +13,7 @@ func createField() [32][32]string {
 }
 
 func renderScreen(field [32][32]string) {
-	for _, v:= range field{
+	for _, v := range field {
 		fmt.Println(v)
 	}
 }
@@ -21,5 +21,9 @@ func renderScreen(field [32][32]string) {
 func main() {
 	field := createField()
 	field[2][3] = "@"
-	renderScreen(field)
+	for i := range 10 {
+		field[i][i] = "z"
+		renderScreen(field)
+	}
 }
+
